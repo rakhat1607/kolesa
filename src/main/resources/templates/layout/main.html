@@ -1,0 +1,16 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th = "http://www.thymeleaf.org">
+<head th:insert="~{head.html}">
+</head>
+<body>
+<div class="container" th:insert="~{navbar.html}">
+</div>
+<div class="container">
+  <div layout:fragment="search"></div>
+  <div class="row">
+    <div class="col-12" layout:fragment="">
+    </div>
+    </div>
+</div>
+</body>
+</html>

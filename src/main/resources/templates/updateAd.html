@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+      layout:decorate="layout/main.html">
+<div layout:fragment="mainPage">
+        <div class="container">
+                <div class="row">
+                        <div class="col-6 mx-auto">
+                        <form th:action="@{'/updatead/' + ${updatead.id}}" method="post" >
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.photo}"></label>
+                                                <input type="hidden" name="id" th:value="${updatead.id}">
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <input class="form-control" type="file"  name="photo">
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <label th:text="#{label.city}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <select name="city.id" class="form-control">
+                                                        <option th:each="ct : ${city}" th:value="${ct.id}" th:text="${ct.city}" th:selected="${ct.id==updatead.city.id}"></option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.brand}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <select name="brand.id" class="form-control" >
+                                                        <option th:each="ml : ${model}"  th:value="${ml.brand.id}" th:text="${ml.brand.brand}" th:selected="${ml.brand.id==updatead.model.brand.id}"></option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.model}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <select name="model.id" class="form-control">
+                                                        <option th:each="ml : ${model}" th:value="${ml.id}" th:text="${ml.model}" th:selected="${ml.id==updatead.model.id}"></option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.yearOfIssue}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <input class="form-control"  type="number" min="1990" max="2023" name="yearOfIssue" th:value="${updatead.yearOfIssue}">
+                                        </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.price}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <input class="form-control"  type="number" name="price" th:value="${updatead.price}">
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.engineType}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <select name="engineType.id" class="form-control">
+                                                        <option th:each="eg : ${engineType}" th:value="${eg.id}" th:text="${eg.engineType}" th:selected="${eg.id==updatead.engineType.id}"></option>
+                                                </select>
+<!--                                                <select name="engineType" class="form-control">-->
+<!--                                                        <option th:selected="${updatead.engineType=='PETROL'}" th:text="#{label.petrol}"></option>-->
+<!--                                                        <option th:selected="${updatead.engineType=='GAS'}" th:text="#{label.gas}"></option>-->
+<!--                                                        <option th:selected="${updatead.engineType=='DIESEL'}" th:text="#{label.diesel}"></option>-->
+<!--                                                        <option th:selected="${updatead.engineType=='HYBRID'}" th:text="#{label.hybrid}"></option>-->
+<!--                                                        <option th:selected="${updatead.engineType=='ELECTRIC'}" th:text="#{label.electric}"></option>-->
+<!--                                                </select>-->
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.mileage}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <input class="form-control"  type="number" name="mileage" th:value="${updatead.mileage}">
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.engineVolume}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <input class="form-control"  type="number" min="0.6" max="5" name="engineVolume" th:value="${updatead.engineVolume}">
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.color}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <select name="color.id" class="form-control">
+                                                        <option th:each="cl : ${color}" th:value="${cl.id}" th:text="${cl.color}" th:selected="${cl.id==updatead.color.id}"></option>
+                                                </select>
+<!--                                                <select name="color" class="form-control">-->
+<!--                                                        <option th:selected="${updatead.color=='RED'}" th:text="#{label.red}"></option>-->
+<!--                                                        <option th:selected="${updatead.color=='BLUE'}" th:text="#{label.blue}"></option>-->
+<!--                                                        <option th:selected="${updatead.color=='WHITE'}" th:text="#{label.white}"></option>-->
+<!--                                                        <option th:selected="${updatead.color=='YELLOW'}" th:text="#{label.yellow}"></option>-->
+<!--                                                        <option th:selected="${updatead.color=='GRAY'}" th:text="#{label.gray}"></option>-->
+<!--                                                        <option th:selected="${updatead.color=='GREEN'}" th:text="#{label.green}"></option>-->
+<!--                                                        <option th:selected="${updatead.color=='PURPLE'}" th:text="#{label.purple}"></option>-->
+<!--                                                </select>-->
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.carBody}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <select name="carBody.id" class="form-control">
+                                                        <option th:each="cb : ${carBody}" th:value="${cb.id}" th:text="${cb.carBody}" th:selected="${cb.id==updatead.carBody.id}"></option>
+                                                </select>
+<!--                                                <select name="carBody" class="form-control">-->
+<!--                                                        <option th:selected="${updatead.carBody=='SEDAN'}" th:text="#{label.sedan}"></option>-->
+<!--                                                        <option th:selected="${updatead.carBody=='HATCHBACK'}" th:text="#{label.hatchback}"></option>-->
+<!--                                                        <option th:selected="${updatead.carBody=='CROSSOVER'}" th:text="#{label.crossover}"></option>-->
+<!--                                                        <option th:selected="${updatead.carBody=='SUV'}" th:text="#{label.suv}"></option>-->
+<!--                                                        <option th:selected="${updatead.carBody=='VAN'}" th:text="#{label.van}"></option>-->
+<!--                                                        <option th:selected="${updatead.carBody=='COUPE'}" th:text="#{label.coupe}"></option>-->
+<!--                                                        <option th:selected="${updatead.carBody=='CABRIOLET'}" th:text="#{label.cabriolet}"></option>-->
+<!--                                                </select>-->
+                                        </div>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-12">
+                                                <label th:text="#{label.gearbox}"></label>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-12">
+                                                <select name="gearbox.id" class="form-control">
+                                                        <option th:each="gr : ${gearbox}" th:value="${gr.id}" th:text="${gr.gearbox}" th:selected="${gr.id==updatead.gearbox.id}"></option>
+                                                </select>
+<!--                                                <select name="gearbox" class="form-control">-->
+<!--                                                        <option th:selected="${updatead.gearbox=='MECHANICS'}" th:text="#{label.mechanics}"></option>-->
+<!--                                                        <option th:selected="${updatead.gearbox=='MACHINE'}" th:text="#{label.machine}"></option>-->
+<!--                                                        <option th:selected="${updatead.gearbox=='ROBOT'}" th:text="#{label.robot}"></option>-->
+<!--                                                </select>-->
+                                        </div>
+                                </div>
+                                <div class="d-flex">
+                                <div class="row mt-3">
+                                        <div class="col-6 my-2">
+                                                <button type="submit" class="btn btn-success" th:text="#{button.update}"></button>
+                                        </div>
+                                </div>
+                                </form>
+                                <form th:action="@{'/deletead/' + ${updatead.id}}" method="post" class="mt-3 mx-3">
+                                <div class="col-6 my-2">
+                                        <input type="hidden" name="id" th:value="${updatead.id}">
+                                        <button type="submit" class="btn btn-danger" th:text="#{button.delete}"></button>
+                                </div>
+                                </form>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+</html>

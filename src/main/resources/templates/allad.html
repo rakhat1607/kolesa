@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+      layout:decorate="layout/main.html">
+<div layout:fragment="search">
+</div>
+<div class="col-3" layout:fragment="mainPage" th:each="cars :${car}">
+    <div class="card mt-3" style="width: 18rem;" >
+        <img th:src="@{'/viewpic/'+${cars.photo}}" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${cars.model.brand.brand}"></h5>
+            <label th:text="#{label.yearOfIssue}"></label><p class="card-text" th:text="${cars.yearOfIssue}"></p>
+            <label th:text="#{label.price}"></label><p class="card-text" th:text="${cars.price}"></p>
+            <a th:href="@{'/addetails/' + ${cars.id}}" th:text="#{label.goSomewhere}"></a>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+      layout:decorate="layout/main.html">
+<div layout:fragment="search">
+        <h2 th:text="#{welcome.to.profile}"></h2>
+        <h2 th:text="#{dear}"> </h2> <h2 th:text="${#authentication.getPrincipal().fullName}"></h2>
+        <a th:href="@{'/updatepassword'}" th:text="#{update.password}"></a>
+        <br>
+        <a th:href="@{'/myad'}" th:text="#{a.myad}"></a>
+</div>
+</html>

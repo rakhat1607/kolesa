@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+      layout:decorate="layout/main.html">
+<div layout:fragment="mainPage">
+        <h1>SECURITY SAMPLE</h1>
+        <h2>WELCOME TO EDITOR</h2>
+        <h2>DEAR <span th:text="${#authentication.getPrincipal().fullName}"></span></h2>
+        <a th:href="@{'/'}">HOME PAGE</a>
+</div>
+</html>

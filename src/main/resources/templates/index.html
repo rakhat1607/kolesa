@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+      layout:decorate="layout/main.html">
+<div layout:fragment="mainPage">
+    <form th:action="@{'/search'}" method="get">
+        <div class="container" style="background-color: #fff2cf">
+            <div class="row">
+                <div class="col-3">
+                    <div class="d-flex justify-content-center">
+                        <label th:text="#{label.city}"></label>
+                    </div>
+                    <select name="city.id" class="form-control">
+                        <option></option>
+                        <option th:each="ct : ${city}" th:value="${ct.id}" th:text="${ct.city}"></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <div class="d-flex justify-content-center">
+                        <label th:text="#{label.brand}"></label>
+                    </div>
+
+                    <select name="brand.id" class="form-control">
+                        <option></option>
+                        <option th:each="br : ${brand}" th:value="${br.id}" th:text="${br.brand}"></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <div class="d-flex justify-content-center">
+                        <label th:text="#{label.color}"></label>
+                    </div>
+
+                    <select name="color.id" class="form-control">
+                        <option></option>
+                        <option th:each="cl : ${color}" th:value="${cl.id}" th:text="${cl.color}"></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <div class="d-flex justify-content-center">
+                        <label th:text="#{label.gearbox}"></label>
+                    </div>
+
+                    <select name="gearbox.id" class="form-control">
+                        <option></option>
+                        <option th:each="gr : ${gearbox}" th:value="${gr.id}" th:text="${gr.gearbox}"></option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-center">
+                        <label th:text="#{label.engineType}"></label>
+                    </div>
+
+                    <select name="engineType.id" class="form-control">
+                        <option></option>
+                        <option th:each="en : ${engineType}" th:value="${en.id}" th:text="${en.engineType}"></option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-center">
+                        <label th:text="#{label.carBody}"></label>
+                    </div>
+
+                    <select name="carBody.id" class="form-control">
+                        <option></option>
+                        <option th:each="cr : ${carBody}" th:value="${cr.id}" th:text="${cr.carBody}"></option>
+                    </select>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-dark my-3" th:text="#{buttonshowadd}"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</html>

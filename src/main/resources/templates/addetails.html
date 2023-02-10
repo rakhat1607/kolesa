@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymleaf-extras-springsecurity5"
+      layout:decorate="layout/main.html">
+<div layout:fragment="mainPage">
+
+    <style>
+        .mySlides {
+            display: none;
+        }
+    </style>
+    <div class="d-flex flex-row mb-3 m-3">
+        <div class="container" th:each="cars:${car}">
+            <div class="row">
+                <div class="col-4">
+                    <input type="hidden" th:value="${cars.id}" name="id">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.city} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.city.city}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.brand} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.model.brand.brand}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.model} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.model.model}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.yearOfIssue} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.yearOfIssue}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.price} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.price}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.engineType} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.engineType.engineType}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.mileage} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.mileage}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.engineVolume} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.engineVolume}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.color} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.color.color}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.carBody} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.carBody.carBody}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.gearbox} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.gearbox.gearbox}"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p th:text="#{label.phonenumber} + ':'"></p>
+                            </td>
+                            <td class="ps-3">
+                                <p th:text="${cars.getAuthor().getPhoneNumber()}"></p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-8">
+                    <div class="w3-content w3-display-container">
+                        <img th:each="i :${car.image}" class="mySlides" th:src="@{'/viewpic/'+${i.image}}" width="100%">
+                        <div class="flex-row">
+                            <button class="btn btn-dark float-start m-1" onclick="plusDivs(-1)">&#10094;</button>
+                            <button class="btn btn-dark float-end m-1" onclick="plusDivs(1)">&#10095;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form  th:if="${!isFavorite}" th:action="@{'/makeFavorite'}" method="post">
+                <input type="hidden" th:value="${cars.id}" name="id">
+
+                <button type="submit" class="btn btn-light"><i class="far fa-bookmark fa-2x"></i></button>
+            </form>
+            <p  th:if="${isFavorite}">Убрать из избранного</p>
+            <form th:if="${isFavorite}" th:action="@{'/removeFavorite'}" method="post">
+                <input type="hidden" th:value="${cars.id}" name="id">
+                <button type="submit" class="btn btn-dark"><i class="fas fa-bookmark fa-2x"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <h4 class="text-center" th:text="#{label.comments}"></h4>
+            <div class="list-group " th:each="comments:${comments}">
+                <div class="list-group-item list-group-item-action">
+                    <input type="hidden" th:value="${comments.id}">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" th:text="${comments.user.fullName}"></h5>
+                        <small class="text-muted">
+                            <form th:action="@{'/deleteComment'}" method="post">
+                                <input type="text" th:value="${comments.id}" name="id">
+                                <input type="text" th:value="${car.id}"  name="id">
+                                <input type="text" th:value="${comments.user.id}"  name="id">
+                                <button type="submit" class="btn btn-dark">delete</button>
+                            </form>
+                        </small>
+                    </div>
+                    <p class="text-muted" th:text="${comments.getComment()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list-group ">
+        <form th:action="@{'/addcomment'}" method="post">
+            <div class="list-group-item list-group-item-action">
+                <input type="hidden" th:value="${car.id}" name="id">
+                <div class="d-flex w-100 justify-content-between">
+                    <input type="text" name="comment" class="form-control">
+                </div>
+                <p class="mb-1"></p>
+                <small class="text-muted my-1">
+                    <button type="submit" class="btn btn-secondary" th:text="#{button.addComment}"></button>
+                </small>
+            </div>
+        </form>
+    </div>
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+    </script>
+</div>
+</html>
